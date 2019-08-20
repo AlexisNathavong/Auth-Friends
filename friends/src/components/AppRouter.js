@@ -1,25 +1,36 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export default function AppRouter() {
+import Login from './Login';
+import FriendsList from './FriendsList';
 
-    return <div>
-        <nav>
-            <ul>
-                <li>
-                    <Link to ='/'>Login</Link>
-                </li>
+function AppRouter() {
 
-                <li>
-                    <Link to ='/friendslist'>Friends List</Link>
-                </li>
-            </ul>
-        </nav>
+    return (
 
-    <Switch>
-        <Route path='/login' component={Login} />
-        <Route path='/friendslist' component={FriendsList} />
-    </Switch>
+        <Router>
+            <div className="app-router">
+                
+                    <ul>
+                        <li>
+                            <Link to ='/'>Login</Link>
+                        </li>
 
-    </div>
+                        <li>
+                            <Link to ='/friendslist'>Friends List</Link>
+                        </li>
+                    </ul>
+                
+
+            <Switch>
+                <Route path='/login' component={Login} />
+                <Route exact path='/protected' component={FriendsList} />
+            </Switch>
+
+            </div>
+        </Router>
+    );
 }
+
+export default AppRouter;

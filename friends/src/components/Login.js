@@ -13,17 +13,59 @@ const Login = () => {
 
     };
 
-    const login = e => {
-        e.target.preventDefault();
+   const login = e => {
+        e.preventDefault();
 
         axios.post('http://localhost:5000/api/login', user)
             .then(res => {
-                console.log(res.data)
+                console.log(res)
+
+                localStorage.setItem('token', res.data.payload);
+
+                dispatch({ type: 'LOGIN', payload: res.data});
             })
 
             .catch(err => {
                 console.log(err.response)
             })
-    }
+
+        setNewUser('');
+    };
+
+    console.log(state);
+
+    return (
+        <form>
+            <div className="form-group">
+                <label>Username: </label>
+
+                <input
+                    className="form-group"
+                    type="username"
+                    name="username"
+                    value={user.username}
+                    onChange={handleChanges}
+                />
+
+
+            </div>
+
+            <div className="form-group">
+                <label>Passowrd: </label>
+
+                <input
+                    className="form-group"
+                    type="password"
+                    name="password"
+                    value={user.password}
+                    onChange={handleChanges}
+                />
+
+            </div>
+
+            <button onClick={login}>Submit</button>
+        </form>
+    )
 }
 
+export default Login;
