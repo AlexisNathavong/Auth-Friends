@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import Login from './Login';
 import FriendsList from './FriendsList';
+import FriendsForm from './FriendsForm';
+import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
 
@@ -14,18 +16,19 @@ function AppRouter() {
                 
                     <ul>
                         <li>
-                            <Link to ='/'>Login</Link>
+                            <Link to ='/login'>Login</Link>
                         </li>
 
                         <li>
-                            <Link to ='/friendslist'>Friends List</Link>
+                            <Link to='/friendsform'>Friends Form</Link>
                         </li>
+
                     </ul>
                 
 
             <Switch>
                 <Route path='/login' component={Login} />
-                <Route exact path='/protected' component={FriendsList} />
+                <PrivateRoute exact path='/friendsform' component={FriendsForm} />
             </Switch>
 
             </div>
