@@ -1,8 +1,8 @@
 import React, { useState, useReducer } from 'react';
 import { reducer, initialState } from './reducers/LoginReducer';
-import axios from 'axios';
+import { axiosWithAuth } from './utils/axiosWithAuth';
 
-const Login = () => {
+const Login = props => {
     const [user, setNewUser] = useState({username: '', password: ''});
 
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -14,11 +14,14 @@ const Login = () => {
     const login = e => {
         e.preventDefault();
 
-        axios.post('http://localhost:5000/api/login', user)
+        axiosWithAuth().post('http://localhost:5000/api/login', user)
             .then(res => {
                 console.log('Login api', res.data)
                 localStorage.setItem('token', res.data.payload);
+
                 dispatch({ type: 'LOGIN', payload: res.data})
+
+                props.history.push('/protected');
             })
             .catch(err => {
                 console.log('Error in login api', err.response)

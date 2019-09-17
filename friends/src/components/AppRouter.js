@@ -13,13 +13,13 @@ const AppRouter = () => {
         <Router>
             <div className="app-router">
                 <Nav>
-                    <Link to='/'>Login</Link>
-                    <Link to='/friendsform'>Friends Form</Link>
+                    <Link to='/login'>Login</Link>
+                    <Link to='/protected'>Protected Page</Link>
                 </Nav>
 
                 <Switch>
+                    <PrivateRoute exact path='/protected' component={FriendsForm} />
                     <Route path='/' component={Login} />
-                    <PrivateRoute exact path='/friendsform' component={FriendsForm} />
                 </Switch>
             </div>
         </Router>

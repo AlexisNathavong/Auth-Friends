@@ -11,7 +11,7 @@ const FriendForm = () => {
     const getFriend = () => {
         //* GET request for getting friends data goes here */
 
-        axiosWithAuth.get('http://localhost:5000/api/friends')
+        axiosWithAuth().get('http://localhost:5000/api/friends')
             .then(res => {
                 console.log('Friends api', res.data)
                 setFriends(res.data)
@@ -32,7 +32,7 @@ const FriendForm = () => {
     const addFriend = e => {
         e.preventDefault();
         //* POST request for adding a friend goes here */
-        axiosWithAuth.post('http://localhost:5000/api/friends', friends)
+        axiosWithAuth().post('http://localhost:5000/api/friends', friends)
             .then(res => {
                 console.log('Add friend api', res.data)
                 setFriends(res.data)
