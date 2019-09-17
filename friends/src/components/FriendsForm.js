@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from './utils/axiosWithAuth';
-import { initialState } from './reducers/LoginReducer';
+
+//Components
+import Friend from './Friend';
 
 const FriendForm = () => {
     const [newFriend, setNewFriend] = useState({name: '', age: '', email: '' });
@@ -55,9 +57,41 @@ const FriendForm = () => {
                     onChange={handleChanges}
                 />
             </div>
-            
+
+            <div className="friends-form">
+                <label>Age: </label>
+                <input
+                    className="friends-form"
+                    type="number"
+                    name="age"
+                    placeholder="Add your age"
+                    value={friends.age} required
+                    onChange={handleChanges}
+                />
+            </div>
+
+            <div className="friends-form">
+                <label>Email: </label>
+                <input
+                    className="friends-form"
+                    type="text"
+                    name="email"
+                    placeholder="Add an email address"
+                    value={friends.email} required
+                    onChange={handleChanges}
+                />
+            </div>
+
+            <button onClick={addFriend}>Add</button>
         </form>
+
+        {friends.map(friend => (
+            <Friend friend={friend} />
+        ))}
+
         </>
     )
 
 }
+
+export default FriendForm;

@@ -1,20 +1,20 @@
-
 export const initialState = {
-    login: [
+    friends: [
         {
-            username: '',
-            password: ''
+            name: '',
+            age: '',
+            email: ''
         }
     ]
 };
 
 export const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'LOGIN':
+        case 'ADD_FRIEND':
             return {
                 ...state,
-                login: [action.payload]
-            }
+                friends: action.payload
+            };
 
         default:
             return state;

@@ -17,6 +17,7 @@ const Login = () => {
         axios.post('http://localhost:5000/api/login', user)
             .then(res => {
                 console.log('Login api', res.data)
+                localStorage.setItem('token', res.data.payload);
                 dispatch({ type: 'LOGIN', payload: res.data})
             })
             .catch(err => {
@@ -35,7 +36,7 @@ const Login = () => {
                     type="text"
                     name="username"
                     placeholder="Add a username"
-                    value={user.username} required
+                    value={user.username} 
                     onChange={handleChanges}
                 />
             </div>
@@ -47,7 +48,7 @@ const Login = () => {
                     type="password"
                     name="password"
                     placeholder="Create a password"
-                    value={user.password} required
+                    value={user.password} 
                     onChange={handleChanges}
                 />
             </div>
