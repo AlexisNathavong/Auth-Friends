@@ -1,3 +1,5 @@
+// import { FETCH_FRIENDS_DATA_START, FETCH_FRIENDS_DATA_SUCCESS, FETCH_FRIENDS_DATA_FAILURE} from ''
+
 
 export const initialState = {
     login: [
@@ -5,7 +7,8 @@ export const initialState = {
             username: '',
             password: ''
         }
-    ]
+    ],
+    isloading: false
 };
 
 export const reducer = (state = initialState, action) => {

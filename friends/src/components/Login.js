@@ -1,6 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import { reducer, initialState } from './reducers/LoginReducer';
 import { axiosWithAuth } from './utils/axiosWithAuth';
+import Loader from 'react-loader-spinner';
 
 const Login = props => {
     const [user, setNewUser] = useState({username: '', password: ''});
@@ -56,7 +57,16 @@ const Login = props => {
                 />
             </div>
 
-            <button onClick={login}>Submit</button>
+            <button onClick={login}>
+                {props.isLoading ? 
+                (<Loader 
+                    type="Watch"
+                    color="#00BFFF"
+                    height="40"
+                    width="40"
+                    /> ) : 
+                   ('Submit')}
+                </button>
         </form>
     )
 }

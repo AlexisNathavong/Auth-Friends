@@ -32,7 +32,7 @@ const FriendForm = () => {
     const addFriend = e => {
         e.preventDefault();
         //* POST request for adding a friend goes here */
-        axiosWithAuth().post('http://localhost:5000/api/friends', friends)
+        axiosWithAuth().post('http://localhost:5000/api/friends', newFriend)
             .then(res => {
                 console.log('Add friend api', res.data)
                 setFriends(res.data)
