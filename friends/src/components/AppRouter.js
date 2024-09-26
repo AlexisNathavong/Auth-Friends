@@ -1,25 +1,29 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export default function AppRouter() {
+//Components
+import Login from './Login';
+import FriendsForm from './FriendsForm';
+import PrivateRoute from './PrivateRoute';
+import { Nav } from './StyledWidgets';
 
-    return <div>
-        <nav>
-            <ul>
-                <li>
-                    <Link to ='/'>Login</Link>
-                </li>
+const AppRouter = () => {
+    return (
+        <Router>
+            <div className="app-router">
+                <Nav>
+                    <Link to='/login'>Login</Link>
+                    <Link to='/protected'>Protected Page</Link>
+                </Nav>
 
-                <li>
-                    <Link to ='/friendslist'>Friends List</Link>
-                </li>
-            </ul>
-        </nav>
-
-    <Switch>
-        <Route path='/login' component={Login} />
-        <Route path='/friendslist' component={FriendsList} />
-    </Switch>
-
-    </div>
+                <Switch>
+                    <PrivateRoute exact path='/protected' component={FriendsForm} />
+                    <Route path='/' component={Login} />
+                </Switch>
+            </div>
+        </Router>
+    )
 }
+
+export default AppRouter;
